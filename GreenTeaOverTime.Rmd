@@ -1,0 +1,169 @@
+---
+title: "Green Tea Over Time"
+output:
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: sandstone
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/Users/cassa/Documents/Graduate School/Creative Design Practice/Green Tea Tracking")
+```
+
+
+### Introduction
+
+```{r, echo=FALSE}
+knitr::include_graphics("green tea cover.png")
+
+teaData = read.csv("GreenTea.csv")
+dates <- as.Date(teaData$Date, "%m/%d/%y")
+```
+
+
+
+
+***
+
+Green tea has been my beverage of choice for the past few years. Throughout high school and most of undergrad, I mostly drank black tea with milk, like my parents and grandparents do. I tried green tea on a whim one day and happened to like it better. It's also much more convenient to prepare as a college student on the go --- hot water and a teabag are much easier to procure without needing milk.
+
+
+
+### Motivation
+```{r pressure, echo=FALSE}
+knitr::include_graphics("drinking tea.png")
+```
+
+
+
+***
+
+I drink a lot of green tea. I drink it in class (shown here), I drink it while studying, I drink it while hanging out with friends and/or pursuing hobbies. I drink enough green tea that I was curious if I was drinking too much of it --- poison is in the dose, and all of that. So I decided to track my green tea consumption for two weeks straight.
+
+
+### Methods
+```{r, echo = FALSE}
+knitr::kable(
+  teaData,
+  caption = 'The data taken'
+)
+```
+
+
+
+
+
+
+
+***
+
+
+Throughout the two weeks I collected data, I measured how large the thermoses I drink my tea out of are. This gave me a baseline in fluid ounces for how much I was drinking when I finished one. I kept track of how much I drank from each thermos I had daily (in the Drink_1, Drink_2, etc) columns. I summed this information in a column to track totals, as well as counting how many thermoses I was drinking daily. Lastly, I converted the fluid ounces to how many regular sized mugs I was drinking, since my thermoses are significantly larger. I typically drink from a large mug when I use one, so I picked the top of the range values I found for mug sizes (8 fl oz to 12.5 fl oz).
+
+
+### Results
+```{r, echo = FALSE}
+plot(dates, teaData$Num_Cups,
+     main = "Cups of tea over time",
+     xlab = "Dates from 2/21/24 to 3/6/24",
+     ylab = "Number of mugs consumed",
+     ylim = c(0, 10),
+     )
+abline(h = 3, col = "#93C54B")
+abline(h = 5, col = "#93C54B")
+```
+
+
+
+***
+
+
+Over the two weeks of data collection, I drank an average 3.845 cups of green tea a day (or 48.07 fluid ounces). This is well within the healthy range of 3 to 5 cups, so my consumption of green tea can reasonably be concluded to not be a health issue. 
+
+
+### Discussion & Conclusion
+```{r, echo = FALSE}
+knitr::include_graphics("simplewordcloud.com_3840x.png")
+
+
+```
+
+
+
+
+
+***
+
+#### Showing my Work
+While drinking my green tea, I've been keeping a little log of what I've been doing. Here's some of what my green tea habit has fueled over the past two weeks. Whether it's work, play, or something in between, my green tea habit fuels a substantial portion of my daily activities. 
+
+
+
+### Final Design & Process {data-commentary-width=1000} 
+
+
+
+***
+
+
+
+I started this assignment by brainstorming a whole load of data I could potentially collect around myself before settling on how much green tea I consumed. I primarily chose this data above anything else on the list due to personal curiosity --- I know I drink it all of the time and have joked with family and friends about potentially drinking too much of it. I've been learning R this semester in my psychological statistics course and was interested in furthering my skills with it to present data, so I chose to visualize my work in R to push myself to build skills there (and I did --- quite a few new packages/libraries/functions so I'm happy with that).
+
+Once I had a week's worth of data, I did some experimental graphing in R to see how it would look. I struggled to draw a lines on the graph to mark the recommendations (again, pretty new to R). However, I was able to begin further idea into how I wanted my final data to be presented. I was inspired to try going for some kind of dashboard based on an R library I read about (flexdashboard) and started thinking about what a dashboard of green tea data might look like. As I explored flexdashboard, I discovered the storyboard module and shifted my approach to focus more on my personal narrative.
+
+As I added more of a personal slant to my data presentation, I decided to incorporate what daily activities I was doing as I was drinking my green tea. The major reason I drink my tea in thermoses as opposed to other beverage vessels is I am a very slow drinker. I will drink from the same thermos for several hours. I thought it was both a fun take on Data Feminism's Showing Your Work chapter while adding an additional dataset to the project (although I'm not sure how unexpected it is. I suppose it's unexpected in the context of my initial motivation).
+
+Lastly, I decided to play with subverting statistics communication norms when presenting my data. R is most commonly used to prepare statistics in a formal and professional context, so I deliberately used a conversational, casual tone when presenting the data I collected.
+
+
+
+
+### Iteration 1
+```{r, echo = FALSE}
+knitr::include_graphics("storyboard v1.png")
+
+
+```
+
+
+
+***
+
+
+
+Some of my early experimentation with flexdashboard & specifically the storyboard variant.
+
+
+
+### Process Image 1
+```{r, echo = FALSE}
+knitr::include_graphics("tea data dashboard sketchy.png")
+
+
+```
+
+
+
+***
+
+
+
+Moving back in time here - this was the initial vague idea I had for a green tea data dashboard in my head. In hindsight, I'm not really sure what the graph on the top left was supposed to be.
+
+
+### Process Image 2
+```{r, echo = FALSE}
+knitr::include_graphics("flop viz.png")
+
+
+```
+
+
+
+***
+
+
+
+I wanted a picture to visualize the recommendation for 3 to 5 cups of green tea a day, but I couldn't figure out how to do it nicely enough. Here's my failed version of it.
